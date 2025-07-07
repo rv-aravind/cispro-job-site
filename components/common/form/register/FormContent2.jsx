@@ -3,7 +3,7 @@ const FormContent2 = () => {
     <form method="post" action="add-parcel.html">
       <div className="form-group">
         <label>Email Address</label>
-        <input type="email" name="username" placeholder="Username" required />
+        <input type="email" name="email" placeholder="email" required />
       </div>
       {/* name */}
 
@@ -20,7 +20,7 @@ const FormContent2 = () => {
 
       <div className="form-group">
         <button className="theme-btn btn-style-one" type="submit">
-          Register
+          Login
         </button>
       </div>
       {/* login */}

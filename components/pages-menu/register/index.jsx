@@ -1,4 +1,5 @@
 import Register2 from "../../common/form/register/Register2";
+// import FormContent2 from "../../common/form/login/FormContent2";
 import MobileMenu from "../../header/MobileMenu";
 import Header from "./Header";
 
@@ -20,6 +21,7 @@ const index = () => {
           {/* <!-- Login Form --> */}
           <div className="login-form default-form">
             <Register2 />
+             {/* <FormContent2 /> */}
           </div>
           {/* <!--End Login Form --> */}
         </div>

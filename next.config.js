@@ -10,6 +10,15 @@ const nextConfig = {
       "global-builtin",
     ],
   },
+  // express backend  configuration
+  async rewrites() {
+    return [
+      {
+        source: '/api/:path*', // Match any request to /api/*
+        destination: 'http://localhost:5000/api/:path*', // Forward to backend
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;
