@@ -5,10 +5,11 @@ import User from '../model/user.model.js'; // Import User model to check activit
 
 // Middleware to authenticate user via JWT
 export const authenticate = async (req, res, next) => {
-    const token = req.headers.authorization?.split(' ')[1]; // Expecting "Bearer <token>"
-    if (!token) {
-        return res.status(401).json({ message: 'Unauthorized - No token provided' });
-    }
+    const authHeader = req.headers.authorization;
+        if (!authHeader?.startsWith('Bearer ')) {
+            return res.status(401).json({ message: 'Unauthorized - No token provided' });
+        }
+    const token = authHeader.split(' ')[1];
 
     try {
         const decoded = jwt.verify(token, JWT_SECRET);
@@ -23,12 +24,11 @@ export const authenticate = async (req, res, next) => {
     }
 };
 
-// Middleware to authorize based on user roles
-export const authorize = (roles) => {
-    return (req, res, next) => {
-        if (!req.user || !roles.includes(req.user.role)) {
-            return res.status(403).json({ message: 'Forbidden - Insufficient permissions' });
-        }
-        next();
-    };
+
+// Authorize roles: e.g. ['admin', 'superadmin']
+export const authorize = (roles = []) => (req, res, next) => {
+  if (!req.user || !roles.includes(req.user.role)) {
+    return res.status(403).json({ message: 'Forbidden - Insufficient permissions' });
+  }
+  next();
 };

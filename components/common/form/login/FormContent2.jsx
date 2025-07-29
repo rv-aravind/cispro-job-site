@@ -201,8 +201,6 @@
 // };
 
 // export default FormContent2;
-
-// new
 'use client';
 
 import { useState } from 'react';
@@ -210,9 +208,8 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import LoginWithSocial from './LoginWithSocial';
 
-const FormContent2 = ({ role }) => {
-  const [name, setname] = useState('');
-  const [email, setEmail] =useState('');
+const FormContent2 = () => {
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -224,23 +221,21 @@ const FormContent2 = ({ role }) => {
     setError('');
 
     try {
-      const response = await fetch('/api/v1/auth/sign-up', {
+      const response = await fetch('/api/v1/auth/sign-in', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          name,
           email,
           password,
-          role: role || 'candidate',
         }),
       });
 
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.message || 'Registration failed');
+        throw new Error(data.message || 'Login failed');
       }
 
       // Store token and user details in localStorage
@@ -253,7 +248,7 @@ const FormContent2 = ({ role }) => {
       }));
 
       // Redirect based on role
-      if (data.role === 'employer') {
+      if (data.user.role === 'superadmin' || data.user.role === 'employer' || data.user.role === 'admin') {
         router.push('/employers-dashboard/dashboard');
       } else {
         router.push('/candidates-dashboard/dashboard');
@@ -267,21 +262,9 @@ const FormContent2 = ({ role }) => {
 
   return (
     <div className="form-inner">
-      <h3>{role === 'employer' ? 'Employer Registration' : 'Candidate Registration'}</h3>
+      <h3>Login to Cispro</h3>
 
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label>Username</label>
-          <input
-            type="text"
-            name="name"
-            placeholder="Username"
-            value={name}
-            onChange={(e) => setname(e.target.value)}
-            required
-          />
-        </div>
-
         <div className="form-group">
           <label>Email</label>
           <input
@@ -314,14 +297,14 @@ const FormContent2 = ({ role }) => {
             type="submit"
             disabled={loading}
           >
-            {loading ? 'Registering...' : 'Register'}
+            {loading ? 'Logging in...' : 'Login'}
           </button>
         </div>
       </form>
 
       <div className="bottom-box">
         <div className="text">
-          Already have an account? <Link href="/login">LogIn</Link>
+          Don&apos;t have an account? <Link href="/register">Register</Link>
         </div>
         <div className="divider">
           <span>or</span>

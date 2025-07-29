@@ -15,12 +15,14 @@ authentication.signup = async (req, res, next) => {
 
     try {
         const { name, email, password, role } = req.body;
+        // Only allow candidate or employer roles on signup
+        const safeRole = ['candidate', 'employer'].includes(role) ? role : 'candidate';
 
         // Validate required fields
         if (!name || !email || !password) {
             await session.abortTransaction();
             session.endSession();
-            return res.status(400).json({ message: "All fields are required" });
+            return res.status(400).json({ message: 'All fields (name, email, password) are required' });
         }
 
         // Check for existing user
@@ -36,11 +38,11 @@ authentication.signup = async (req, res, next) => {
         const hashedPassword = await bcrypt.hash(password, salt);
 
         // Create new user with optional role (defaults to 'candidate' in schema)
-        const newUser = new User({ name, email, password: hashedPassword, role });
+        const newUser = new User({ name, email, password: hashedPassword, role: safeRole });
         await newUser.save({ session });
 
         // Generate JWT token
-        const token = jwt.sign({ userId: newUser._id }, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN });
+        const token = jwt.sign({ userId: newUser._id, role: newUser.role }, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN });
 
         // Commit transaction and end session
         await session.commitTransaction();
@@ -87,6 +89,11 @@ authentication.signin = async (req, res, next) => {
         if (!isMatch) {
             return res.status(400).json({ message: "Invalid Password" });
         }
+
+        if (!user.isActive) {
+            return res.status(403).json({ message: "User account is deactivated" });
+        }
+
 
         // Generate JWT token
         const token = jwt.sign({ userId: user._id }, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN });

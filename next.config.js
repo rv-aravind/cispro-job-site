@@ -15,7 +15,8 @@ const nextConfig = {
     return [
       {
         source: '/api/:path*', // Match any request to /api/*
-        destination: 'http://localhost:5000/api/:path*', // Forward to backend
+        destination: 'http://localhost:5000/api/:path*', // Forward to backend, local
+        // destination: 'https://cispro-job-site-apis.onrender.com/api/:path*', // Forward to backend, production
       },
     ];
   },
