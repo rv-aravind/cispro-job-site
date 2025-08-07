@@ -72,7 +72,7 @@ const CompanyProfileListingsTable = () => {
             </select>
           </div>
           {/* Add Company Profile button */}
-          <Link href="/api/v1/employer-dashboard/company-profile/create" className="theme-btn btn-style-one">
+          <Link href="/test/create" className="theme-btn btn-style-one">
             Add Company Profile
           </Link>
         </div>
@@ -152,14 +152,14 @@ const CompanyProfileListingsTable = () => {
                       <div className="option-box">
                         <ul className="option-list">
                           <li>
-                            {/* <Link href={`/company-profile/${profile._id}`} data-text="View Profile"> */}
+                           <Link href={`/test/${profile._id}`} data-text="View Profile">
                               <span className="la la-eye"></span>
-                            {/* </Link> */}
+                            </Link>
                           </li>
                           <li>
-                            {/* <Link href={`/company-profile/edit/${profile._id}`} data-text="Edit Profile"> */}
+                            <Link href={`/test/edit/${profile._id}`} data-text="Edit Profile">
                               <span className="la la-pencil"></span>
-                            {/* </Link> */}
+                            </Link>
                           </li>
                           <li>
                             <button onClick={() => handleDelete(profile._id)} data-text="Delete Profile">

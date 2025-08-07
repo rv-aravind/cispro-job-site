@@ -1,92 +1,66 @@
+'use client'
+
 import MobileMenu from "../../../header/MobileMenu";
 import DashboardHeader from "../../../header/DashboardHeader";
 import LoginPopup from "../../../common/form/login/LoginPopup";
 import DashboardEmployerSidebar from "../../../header/DashboardEmployerSidebar";
 import BreadCrumb from "../../BreadCrumb";
-import MyProfile from "./components/my-profile";
-import SocialNetworkBox from "./components/SocialNetworkBox";
-import ContactInfoBox from "./components/ContactInfoBox";
 import CopyrightFooter from "../../CopyrightFooter";
 import MenuToggler from "../../MenuToggler";
+import CompanyProfileForm from "./components/CompanyProfileForm"; // Unified form component
 
-const index = () => {
-    return (
-        <div className="page-wrapper dashboard">
-            <span className="header-span"></span>
-            {/* <!-- Header Span for hight --> */}
+// console.log("indexrgvrd", profileId);
 
-            <LoginPopup />
-            {/* End Login Popup Modal */}
+const CompanyProfilePage = ({ mode = 'view', profileId }) => {
+  return (
+    <div className="page-wrapper dashboard">
+      <span className="header-span"></span>
 
-            <DashboardHeader />
-            {/* End Header */}
+      {/* Login Modal */}
+      <LoginPopup />
 
-            <MobileMenu />
-            {/* End MobileMenu */}
+      {/* Dashboard Header */}
+      <DashboardHeader />
 
-            <DashboardEmployerSidebar />
-            {/* <!-- End User Sidebar Menu --> */}
+      {/* Mobile Sidebar Menu */}
+      <MobileMenu />
 
-            {/* <!-- Dashboard --> */}
-            <section className="user-dashboard">
-                <div className="dashboard-outer">
-                    <BreadCrumb title="Company Profile!" />
-                    {/* breadCrumb */}
+      {/* Left Sidebar */}
+      <DashboardEmployerSidebar />
 
-                    <MenuToggler />
-                    {/* Collapsible sidebar button */}
+      {/* Main Content Area */}
+      <section className="user-dashboard">
+        <div className="dashboard-outer">
+          {/* Page Title */}
+          <BreadCrumb title="Company Profile" />
 
-                    <div className="row">
-                        <div className="col-lg-12">
-                            <div className="ls-widget">
-                                <div className="tabs-box">
-                                    <div className="widget-title">
-                                        <h4>My Profile</h4>
-                                    </div>
-                                    <MyProfile />
-                                </div>
-                            </div>
-                            {/* <!-- Ls widget --> */}
+          {/* Menu toggler (for mobile view) */}
+          <MenuToggler />
 
-                            <div className="ls-widget">
-                                <div className="tabs-box">
-                                    <div className="widget-title">
-                                        <h4>Social Network</h4>
-                                    </div>
-                                    {/* End .widget-title */}
-                                    <div className="widget-content">
-                                        <SocialNetworkBox />
-                                    </div>
-                                </div>
-                            </div>
-                            {/* <!-- Ls widget --> */}
-
-                            <div className="ls-widget">
-                                <div className="tabs-box">
-                                    <div className="widget-title">
-                                        <h4>Contact Information</h4>
-                                    </div>
-                                    {/* End .widget-title */}
-
-                                    <div className="widget-content">
-                                        <ContactInfoBox />
-                                    </div>
-                                </div>
-                            </div>
-                            {/* <!-- Ls widget --> */}
-                        </div>
-                    </div>
-                    {/* End .row */}
+          {/* Form Box */}
+          <div className="row">
+            <div className="col-lg-12">
+              <div className="ls-widget">
+                <div className="tabs-box">
+                  <div className="widget-title">
+                     <h4>{mode === 'edit' ? 'Edit' : 'View'} Company Profile</h4>
+                  </div>
+                  <div className="widget-content">
+                      {/* ✅ PASS PROPS HERE */}
+                    <CompanyProfileForm mode={mode} profileId={profileId} />
+                  </div>
                 </div>
-                {/* End dashboard-outer */}
-            </section>
-            {/* <!-- End Dashboard --> */}
+              </div>
+            </div>
+          </div>
 
-            <CopyrightFooter />
-            {/* <!-- End Copyright --> */}
         </div>
-        // End page-wrapper
-    );
+      </section>
+
+      {/* Footer */}
+      <CopyrightFooter />
+    </div>
+  );
 };
 
-export default index;
+export default CompanyProfilePage;

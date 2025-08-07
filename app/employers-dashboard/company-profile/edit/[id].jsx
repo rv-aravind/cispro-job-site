@@ -1,4 +1,4 @@
-// import CompanyProfile from "@/components/dashboard-pages/employers-dashboard/company-profile";
+// import CompanyProfile from "@/components/dashboard-pages/employers-dashboard/company-profile/index";
 
 // export const metadata = {
 //   title: "Edit Company Profile || Superio - Job Board React NextJS Template",

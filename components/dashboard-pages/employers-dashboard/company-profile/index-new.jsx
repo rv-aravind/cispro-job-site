@@ -12,6 +12,8 @@ import MenuToggler from "../../MenuToggler";
 import Select from "react-select";
 
 const CompanyProfile = ({ mode = 'view', profileId }) => {
+
+  // console.log("Params received in [id].jsx:", params);
   const router = useRouter();
   const [formData, setFormData] = useState({
     companyName: '',
