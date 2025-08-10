@@ -1,3 +1,5 @@
+'use client'
+
 import MobileMenu from "../../../header/MobileMenu";
 import DashboardHeader from "../../../header/DashboardHeader";
 import LoginPopup from "../../../common/form/login/LoginPopup";
@@ -8,7 +10,7 @@ import PostJobSteps from "./components/PostJobSteps";
 import PostBoxForm from "./components/PostBoxForm";
 import MenuToggler from "../../MenuToggler";
 
-const index = () => {
+const index = ({ mode = 'create', jobId }) => {
   return (
     <div className="page-wrapper dashboard">
       <span className="header-span"></span>
@@ -29,7 +31,8 @@ const index = () => {
       {/* <!-- Dashboard --> */}
       <section className="user-dashboard">
         <div className="dashboard-outer">
-          <BreadCrumb title="Post a New Job!" />
+          {/* <BreadCrumb title="Post a New Job!" /> */}
+          <BreadCrumb title={mode === 'create' ? 'Post a New Job!' : mode === 'edit' ? 'Edit Job' : 'View Job'} />
           {/* breadCrumb */}
 
           <MenuToggler />
@@ -41,13 +44,15 @@ const index = () => {
               <div className="ls-widget">
                 <div className="tabs-box">
                   <div className="widget-title">
-                    <h4>Post Job</h4>
+                     <h4>{mode === 'create' ? 'Post Job' : mode === 'edit' ? 'Edit Job' : 'View Job'}</h4>
+                    {/* <h4>Post Job</h4> */}
                   </div>
 
                   <div className="widget-content">
                     <PostJobSteps />
                     {/* End job steps form */}
-                    <PostBoxForm />
+                    {/* <PostBoxForm /> */}
+                    <PostBoxForm mode={mode} jobId={jobId} />
                     {/* End post box form */}
                   </div>
                 </div>
