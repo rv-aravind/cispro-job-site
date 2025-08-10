@@ -104,7 +104,8 @@ const CompanyProfileListingsTable = () => {
                                 <img
                                   width={50}
                                   height={49}
-                                  src={`http://localhost:5000${profile.logo}`}
+                                   src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${profile.logo}`}
+                                  // src={`http://localhost:5000${profile.logo}`}
                                   alt={`${profile.companyName} logo`}
                                 />
                               ) : (
@@ -117,7 +118,7 @@ const CompanyProfileListingsTable = () => {
                               )}
                             </span>
                             <h4>
-                              <Link href={`/api/v1/employer-dashboard/company-profile/${profile._id}`}>
+                              <Link href={`/test/edit/${profile._id}`}>
                                 {profile.companyName}
                               </Link>
                             </h4>

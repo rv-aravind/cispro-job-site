@@ -109,7 +109,7 @@ const JobListingsTable = () => {
                               />
                             </span> */}
                             <h4>
-                              <Link href={`/employer/job/edit/${job._id}`}>
+                              <Link href={`/employers-dashboard/post-jobs/edit/${job._id}`}>
                                 {job.title}
                               </Link>
                             </h4>

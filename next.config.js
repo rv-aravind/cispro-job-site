@@ -12,13 +12,18 @@ const nextConfig = {
   },
   // express backend  configuration
   async rewrites() {
-    return [
-      {
-        source: '/api/:path*', // Match any request to /api/*
-        destination: 'http://localhost:5000/api/:path*', // Forward to backend, local
-        // destination: 'https://cispro-job-site-apis.onrender.com/api/:path*', // Forward to backend, production
-      },
-    ];
+   // Only use rewrite to local Express server during development
+    if (process.env.NODE_ENV === 'development') {
+      return [
+        {
+          source: '/api/:path*',
+          destination: 'http://localhost:5000/api/:path*', // Local backend
+        },
+      ];
+    }
+
+    // In production, let the frontend use the public API base URL directly
+    return [];
   },
 };
 

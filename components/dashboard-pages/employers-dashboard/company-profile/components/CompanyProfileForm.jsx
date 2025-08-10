@@ -197,7 +197,8 @@ const CompanyProfile = ({ mode = 'view', profileId }) => {
         >
           {logoUrl && (
             <img
-              src={`http://localhost:5000${logoUrl}`}
+              // src={`http://localhost:5000${logoUrl}`}
+              src={`${process.env.NEXT_PUBLIC_API_BASE_URL}${logoUrl}`}
               alt="Company Logo"
               style={{
                 maxWidth: '150px',
