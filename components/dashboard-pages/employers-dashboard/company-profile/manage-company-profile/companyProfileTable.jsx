@@ -15,7 +15,13 @@ const CompanyProfileListingsTable = () => {
     const fetchProfiles = async () => {
       try {
         const token = localStorage.getItem("token"); // Assuming token is stored in localStorage
-        const response = await fetch("/api/v1/employer-dashboard/company-profile/fetch-all", {
+        const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5000';
+        const url = `${API_BASE_URL}/api/v1/employer-dashboard/company-profile/fetch-all`;
+
+        console.log('Fetching profiles from:', url); // Debug log
+        console.log('Token:', token);
+
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}api/v1/employer-dashboard/company-profile/fetch-all`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -38,7 +44,7 @@ const CompanyProfileListingsTable = () => {
     if (confirm("Are you sure you want to delete this profile?")) {
       try {
         const token = localStorage.getItem("token");
-        const response = await fetch(`/api/v1/employer-dashboard/company-profile/delete/${id}`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}api/v1/employer-dashboard/company-profile/delete/${id}`, {
           method: "DELETE",
           headers: {
             Authorization: `Bearer ${token}`,

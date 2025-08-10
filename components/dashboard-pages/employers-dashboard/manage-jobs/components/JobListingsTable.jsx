@@ -14,7 +14,7 @@ const JobListingsTable = () => {
     const fetchJobs = async () => {
       try {
         const token = localStorage.getItem("token"); // Adjust token usage based on your auth flow
-        const response = await fetch("/api/v1/employer-dashboard/jobs/fetch-all", {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}api/v1/employer-dashboard/jobs/fetch-all`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -39,7 +39,7 @@ const JobListingsTable = () => {
     if (confirm("Are you sure you want to delete this job post?")) {
       try {
         const token = localStorage.getItem("token");
-        const response = await fetch(`/api/v1/employer-dashboard/jobs/delete/${id}`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}api/v1/employer-dashboard/jobs/delete/${id}`, {
           method: "DELETE",
           headers: {
             Authorization: `Bearer ${token}`,

@@ -158,7 +158,7 @@ const DashboardCandidatesHeader = () => {
   const handleSignOut = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('/api/v1/auth/sign-out', {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}api/v1/auth/sign-out`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

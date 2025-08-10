@@ -120,7 +120,7 @@ const JobPostForm = ({ mode = 'create', jobId }) => {
         if (!token) throw new Error('No auth token');
 
         // Fetch company profiles
-        const companyResponse = await fetch('/api/v1/employer-dashboard/company-profile/fetch-all', {
+        const companyResponse = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}api/v1/employer-dashboard/company-profile/fetch-all`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         const companyData = await companyResponse.json();
@@ -135,7 +135,7 @@ const JobPostForm = ({ mode = 'create', jobId }) => {
 
         // Fetch job details if in edit/view mode
         if (!isCreate && jobId) {
-          const jobResponse = await fetch(`/api/v1/employer-dashboard/jobs/fetch/${jobId}`, {
+          const jobResponse = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}api/v1/employer-dashboard/jobs/fetch/${jobId}`, {
             headers: { Authorization: `Bearer ${token}` },
           });
           const jobData = await jobResponse.json();
@@ -282,8 +282,8 @@ const JobPostForm = ({ mode = 'create', jobId }) => {
     try {
       const token = localStorage.getItem('token');
       const url = isCreate
-        ? '/api/v1/employer-dashboard/jobs/create'
-        : `/api/v1/employer-dashboard/jobs/update/${jobId}`;
+        ? `${process.env.NEXT_PUBLIC_API_BASE_URL}api/v1/employer-dashboard/jobs/create`
+        : `${process.env.NEXT_PUBLIC_API_BASE_URL}api/v1/employer-dashboard/jobs/update/${jobId}`;
       const method = isCreate ? 'POST' : 'PUT';
 
       const response = await fetch(url, {

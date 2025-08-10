@@ -64,7 +64,7 @@ const CompanyProfile = ({ mode = 'view', profileId }) => {
         const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
         if (!token) throw new Error('No auth token');
 
-        const response = await fetch(`/api/v1/employer-dashboard/company-profile/get/${profileId}`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}api/v1/employer-dashboard/company-profile/get/${profileId}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         const data = await response.json();
@@ -156,8 +156,8 @@ const CompanyProfile = ({ mode = 'view', profileId }) => {
     try {
       const token = localStorage.getItem('token');
       const url = isCreate
-        ? '/api/v1/employer-dashboard/company-profile/create'
-        : `/api/v1/employer-dashboard/company-profile/update/${profileId}`;
+        ? `${process.env.NEXT_PUBLIC_API_BASE_URL}api/v1/employer-dashboard/company-profile/create`
+        : `${process.env.NEXT_PUBLIC_API_BASE_URL}api/v1/employer-dashboard/company-profile/update/${profileId}`;
       const method = isCreate ? 'POST' : 'PUT';
 
       const response = await fetch(url, {
