@@ -4,7 +4,7 @@ import LoginPopup from "../../../../common/form/login/LoginPopup";
 import DashboardEmployerSidebar from "../../../../header/DashboardEmployerSidebar";
 import BreadCrumb from "../../../BreadCrumb";
 import CopyrightFooter from "../../../CopyrightFooter";
-import CompanyProfileTable from "./CompanyProfileTable";
+import CompanyProfileTable from "./CompanyProfileTable.jsx";
 import MenuToggler from "../../../MenuToggler";
 
 const index = () => {
