@@ -15,11 +15,11 @@ const CompanyProfileListingsTable = () => {
     const fetchProfiles = async () => {
       try {
         const token = localStorage.getItem("token"); // Assuming token is stored in localStorage
-        const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5000';
-        const url = `${API_BASE_URL}/api/v1/employer-dashboard/company-profile/fetch-all`;
+        // const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5000';
+        // const url = `${API_BASE_URL}/api/v1/employer-dashboard/company-profile/fetch-all`;
 
-        console.log('Fetching profiles from:', url); // Debug log
-        console.log('Token:', token);
+        // console.log('Fetching profiles from:', url); // Debug log
+        // console.log('Token:', token);
 
         const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}api/v1/employer-dashboard/company-profile/fetch-all`, {
           headers: {
