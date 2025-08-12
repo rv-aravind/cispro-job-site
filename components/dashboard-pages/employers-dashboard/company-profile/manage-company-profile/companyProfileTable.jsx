@@ -7,7 +7,7 @@ import { useEffect,useState } from 'react';
 import { useRouter } from 'next/navigation';
 // companyprofiletable.jsx
 
-const CompanyProfileListingsTable = () => {
+const CompanyProfileTable = () => {
   const [profiles, setProfiles] = useState([]);
 
   // Fetch company profiles from the backend API
@@ -191,4 +191,4 @@ const CompanyProfileListingsTable = () => {
   );
 };
 
-export default CompanyProfileListingsTable;
+export default CompanyProfileTable;
