@@ -23,7 +23,12 @@ const nextConfig = {
     }
 
     // In production, let the frontend use the public API base URL directly
-    return [];
+    return [
+      {
+        source: '/api/:path*',
+        destination: 'https://cispro-job-site-apis.onrender.com/api/:path*', // for production
+      },
+    ];
   },
 };
 
