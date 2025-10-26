@@ -9,6 +9,7 @@ import { store } from "../store/store";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import "rc-slider/assets/index.css";
+// import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 export default function RootLayout({ children }) {
   useEffect(() => {

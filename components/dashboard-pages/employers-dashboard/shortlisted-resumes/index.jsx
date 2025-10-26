@@ -1,3 +1,7 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router"; // Use 'next/navigation' for App Router
 import MobileMenu from "../../../header/MobileMenu";
 import DashboardHeader from "../../../header/DashboardHeader";
 import LoginPopup from "../../../common/form/login/LoginPopup";
@@ -9,6 +13,20 @@ import WidgetContentBox from "./components/WidgetContentBox";
 import MenuToggler from "../../MenuToggler";
 
 const index = () => {
+
+  const [filters, setFilters] = useState({
+    jobId: "", // Initialize with jobId from URL if present
+    status: "All",
+    dateRange: "All",
+    search: "",
+  });
+  const [pagination, setPagination] = useState({
+    currentPage: 1,
+    totalPages: 1,
+    total: 0,
+    limit: 10,
+  });
+
   return (
     <div className="page-wrapper dashboard">
       <span className="header-span"></span>
@@ -40,10 +58,19 @@ const index = () => {
               <div className="applicants-widget ls-widget">
                 <div className="widget-title">
                   <h4>Shorlist Resumes</h4>
-                  <WidgetToFilterBox />
+                    <WidgetToFilterBox
+                    filters={filters}
+                    setFilters={setFilters}
+                    setPagination={setPagination}
+                  />
                 </div>
                 {/* End widget top filter box */}
-                <WidgetContentBox />
+                <WidgetContentBox
+                  filters={filters}
+                  setFilters={setFilters}
+                  pagination={pagination}
+                  setPagination={setPagination}
+                />
               </div>
               {/* <!-- applicants Widget --> */}
             </div>

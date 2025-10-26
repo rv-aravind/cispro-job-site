@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import MobileMenu from "../../../header/MobileMenu";
 import DashboardHeader from "../../../header/DashboardHeader";
 import LoginPopup from "../../../common/form/login/LoginPopup";
@@ -9,6 +12,20 @@ import WidgetTopFilterBox from "./components/WidgetTopFilterBox";
 import MenuToggler from "../../MenuToggler";
 
 const index = () => {
+
+   const [filters, setFilters] = useState({
+    jobId: "", // Initialize jobId as empty for "All Applicants"
+    status: "All",
+    dateRange: "All",
+    search: "",
+  });
+  const [pagination, setPagination] = useState({
+    currentPage: 1,
+    totalPages: 1,
+    total: 0,
+    limit: 10,
+  });
+
   return (
     <div className="page-wrapper dashboard">
       <span className="header-span"></span>
@@ -42,11 +59,20 @@ const index = () => {
                 <div className="tabs-box">
                   <div className="widget-title">
                     <h4>Applicant</h4>
-                    <WidgetTopFilterBox />
+                     <WidgetTopFilterBox
+                      filters={filters}
+                      setFilters={setFilters}
+                      setPagination={setPagination}
+                    />
                   </div>
                   {/* End top widget filter bar */}
 
-                  <WidgetContentBox />
+                   <WidgetContentBox
+                    filters={filters}
+                    setFilters={setFilters}
+                    pagination={pagination}
+                    setPagination={setPagination}
+                  />
                   {/* End widget-content */}
                 </div>
               </div>
