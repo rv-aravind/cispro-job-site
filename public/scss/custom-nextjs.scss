@@ -327,3 +327,20 @@
     color: #cf3838 !important;
     margin-top: 10px;
 }
+
+/* Candidate Profile Form validation styles */
+.border-red-500 {
+  border: 1px solid #ef4444 !important; /* Tailwind red-500 */
+}
+
+.text-red-600 {
+  color: #dc2626 !important;
+}
+
+.text-xs {
+  font-size: 0.75rem;
+}
+
+.mt-1 {
+  margin-top: 0.25rem;
+}

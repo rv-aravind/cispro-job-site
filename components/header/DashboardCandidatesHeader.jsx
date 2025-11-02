@@ -181,7 +181,7 @@ const DashboardCandidatesHeader = () => {
   };
 
   return (
-    <header className={`main-header header-shaddow ${navbar ? 'fixed-header' : ''}`}>
+    <header className={`main-header header-shaddow ${navbar ? 'fixed-header' : ''}`} style={{ position: "fixed !important" }}>
       <div className="container-fluid">
         <div className="main-box">
           <div className="nav-outer">

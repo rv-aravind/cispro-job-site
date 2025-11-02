@@ -10,6 +10,25 @@ const nextConfig = {
       "global-builtin",
     ],
   },
+
+    // ✅ Allow external images (backend uploads)
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '5000',
+        pathname: '/uploads/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cispro-job-site-apis.onrender.com',
+        pathname: '/uploads/**',
+      },
+    ],
+  },
+
+  
   // express backend  configuration
   async rewrites() {
    // Only use rewrite to local Express server during development
